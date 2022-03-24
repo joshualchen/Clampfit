@@ -1,8 +1,8 @@
 import pandas as pd
 import os
 
-for filename in os.listdir("C:/Users/labmin/Desktop/Joshua/Clampfit/Chip U"):
-    if filename.endswith(".csv"):
+for filename in os.listdir("C:/Users/labmin/Desktop/Joshua/Clampfit2/Chip U"):
+    if filename.endswith("EXPORT.csv"):
         df = pd.read_csv(filename, header=None)
         current = df.iloc[:,1] * 10 ** 9
         current.to_csv(filename[:-4] + "_current.csv", index=False, header=False)
