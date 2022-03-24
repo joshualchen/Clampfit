@@ -62,7 +62,7 @@ end
 event_data_lims = [1, height(structure)];
 x = 1;
 global increase;
-increase = 150;
+increase = 10000;
 step_length = round(range(event_data_lims)/10); % for jumping event values
 % make the last mark the current placement, unless empty
 if not(isempty(structure{x, 5}))
@@ -155,26 +155,38 @@ while true
         disp('Saved to excel file.');
     elseif value == 97
         % if a is pressed, red line moves left
-        if withinBounds(t - 0.96, 1000*structure{x, 2}, 1000*structure{x, 3})
+        if withinBounds(t - 0.96, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
             t = t - 0.96;
         end
         redraw(x, structure, trace, t);
     elseif value == 100
         % if d is pressed, red line moves right
-        if withinBounds(t + 0.96, 1000*structure{x, 2}, 1000*structure{x, 3})
+        if withinBounds(t + 0.96, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
             t = t + 0.96;
         end
         redraw(x, structure, trace, t);
     elseif value == 119
         % if w is pressed, red line moves right by t_length steps
-        if withinBounds(t + t_length * 0.96, 1000*structure{x, 2}, 1000*structure{x, 3})
+        if withinBounds(t + t_length * 0.96, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
             t = t + t_length * 0.96;
         end
         redraw(x, structure, trace, t);
     elseif value == 115
         % if s is pressed, red line moves left by t_length steps
-        if withinBounds(t - t_length * 0.96, 1000*structure{x, 2}, 1000*structure{x, 3})
+        if withinBounds(t - t_length * 0.96, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
             t = t - t_length * 0.96;
+        end
+        redraw(x, structure, trace, t);
+    elseif value == 101
+        % if e is pressed, red line moves right by t_length * 10 steps
+        if withinBounds(t + t_length * 0.96 * 10, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
+            t = t + t_length * 0.96 * 10;
+        end
+        redraw(x, structure, trace, t);
+    elseif value == 119
+        % if q is pressed, red line moves left by t_length * 10 steps
+        if withinBounds(t - t_length * 0.96 * 10, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
+            t = t + t_length * 0.96;
         end
         redraw(x, structure, trace, t);
     elseif value == 32
@@ -233,6 +245,7 @@ end
 % structure, and the entire trace. RETURNS new spreadsheet.
 function redraw(num, structure, trace, t)
     % need to extract: background, event, letter, category
+    global increase;
     letter = structure{num, 1};
     start_ind = round(structure{num, 2} * 1000 / 0.96);
     end_ind = round(structure{num, 3} * 1000 / 0.96);

@@ -177,6 +177,18 @@ while true
             t = t - t_length * 0.96;
         end
         redraw(x, structure, trace, t);
+    elseif value == 101
+        % if e is pressed, red line moves right by t_length * 10 steps
+        if withinBounds(t + t_length * 0.96 * 10, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
+            t = t + t_length * 0.96 * 10;
+        end
+        redraw(x, structure, trace, t);
+    elseif value == 113
+        % if q is pressed, red line moves left by t_length * 10 steps
+        if withinBounds(t - t_length * 0.96 * 10, 1000*structure{x, 2}, 1000*structure{x, 3} + increase * 0.96)
+            t = t - t_length * 0.96 * 10;
+        end
+        redraw(x, structure, trace, t);
     elseif value == 32
         % if space is pressed, red line is marked, as well as the value
         structure{x, 5}(end+1) = t;
