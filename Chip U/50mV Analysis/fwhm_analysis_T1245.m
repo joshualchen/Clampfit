@@ -1,12 +1,12 @@
 n = 11;  % the number of bins
 disp_mean = 1;
 mean_val = "";
-xlims = [0.005, 0.5];
+xlims = [0.005, 0.3];
 
-% files = dir;
-% T_data = cell(0, 10);
-% W_data = cell(0, 10);
-% 
+files = dir;
+T_data = cell(0, 12);
+W_data = cell(0, 12);
+
 % for x = 1:length(files)
 %     name = files(x).name;
 %     if endsWith(name, "events_complete.CSV") || endsWith(name, "events_complete.csv")
@@ -28,13 +28,12 @@ xlims = [0.005, 0.5];
 %                 pos8 = (pos3(1) - pos1(1))/1000;  % 3-1 dwell time
 %                 pos9 = (pos4(1) - pos1(1))/1000;  % 4-1 dwell time
 %                 pos10 = (pos5(1) - pos3(1))/1000;  % 5-3 dwell time
-%                 if pos8 > 0.3
-%                     disp("File: " + name + ", row: " + i)
-%                 end
+%                 pos11 = (pos2(1) - pos1(1))/1000;
+%                 pos12 = (pos5(1) - pos4(1))/1000;
 %                 if structure{i, 4} == 'T'
-%                     T_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10};
+%                     T_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10, pos11, pos12};
 %                 elseif structure{i, 4} == 'W'
-%                     W_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10};
+%                     W_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10, pos11, pos12};
 %                 end
 %             end
 %         end
@@ -75,9 +74,7 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
-xlabel("Dwell Time (ms)")
-ylabel("Frequency")
-title("W Event SiN_x Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("W Event SiNx Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
 subplot(2, 2, 2)  % T_SiNx
 % get fwhm with histcounts
@@ -106,9 +103,7 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
-xlabel("Dwell Time (ms)")
-ylabel("Frequency")
-title("T Event SiN_x Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("T Event SiNx Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
 subplot(2, 2, 3)  % W_MoS2
 % get fwhm with histcounts
@@ -137,9 +132,7 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
-xlabel("Dwell Time (ms)")
-ylabel("Frequency")
-title("W Event MoS_2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("W Event MoS2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
 subplot(2, 2, 4)  % T_MoS2
 % get fwhm with histcounts
@@ -168,8 +161,5 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
-xlabel("Dwell Time (ms)")
-ylabel("Frequency")
-title("T Event MoS_2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("T Event MoS2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
-sgtitle("100mV, n = 11")

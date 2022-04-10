@@ -1,7 +1,7 @@
 n = 11;  % the number of bins
-disp_mean = 1;
+disp_mean = 0;
 mean_val = "";
-xlims = [0.005, 0.5];
+xlims = [0.01, 0.3];
 
 % files = dir;
 % T_data = cell(0, 10);
@@ -42,11 +42,11 @@ xlims = [0.005, 0.5];
 % end
 % 
 % W_SiNx = cell2mat(W_data(:, 8));
-% T_SiNx = cell2mat(T_data(:, 8));
+% T_SiNx = cell2mat(T_data(:, 9));
 % W_MoS2 = cell2mat(W_data(:, 10));
 % T_MoS2 = cell2mat(T_data(:, 10));
 
-figure(2)
+figure(1)
 
 subplot(2, 2, 1)  % W_SiNx
 % get fwhm with histcounts
@@ -77,7 +77,7 @@ xticklabels(labels_I_want);
 xlim(log10(xlims))
 xlabel("Dwell Time (ms)")
 ylabel("Frequency")
-title("W Event SiN_x Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("W Event SiN_x Dwell Time")
 
 subplot(2, 2, 2)  % T_SiNx
 % get fwhm with histcounts
@@ -108,7 +108,7 @@ xticklabels(labels_I_want);
 xlim(log10(xlims))
 xlabel("Dwell Time (ms)")
 ylabel("Frequency")
-title("T Event SiN_x Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("T Event SiN_x Dwell Time")
 
 subplot(2, 2, 3)  % W_MoS2
 % get fwhm with histcounts
@@ -139,7 +139,7 @@ xticklabels(labels_I_want);
 xlim(log10(xlims))
 xlabel("Dwell Time (ms)")
 ylabel("Frequency")
-title("W Event MoS_2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("W Event MoS_2 Dwell Time")
 
 subplot(2, 2, 4)  % T_MoS2
 % get fwhm with histcounts
@@ -170,6 +170,7 @@ xticklabels(labels_I_want);
 xlim(log10(xlims))
 xlabel("Dwell Time (ms)")
 ylabel("Frequency")
-title("T Event MoS_2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
+title("T Event MoS_2 Dwell Time")
 
-sgtitle("100mV, n = 11")
+sgtitle("150mV")
+saveas(gcf,"150mV_plots.svg")
