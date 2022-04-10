@@ -74,6 +74,7 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
+ylim([0 0.3])
 title("W Event SiNx Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
 subplot(2, 2, 2)  % T_SiNx
@@ -103,6 +104,7 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
+ylim([0 0.3])
 title("T Event SiNx Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
 subplot(2, 2, 3)  % W_MoS2
@@ -132,6 +134,7 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
+ylim([0 0.3])
 title("W Event MoS2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
 subplot(2, 2, 4)  % T_MoS2
@@ -161,5 +164,6 @@ labels_I_want = [0.01, 0.05, 0.1, 0.2, 0.3];
 xticks(log10(labels_I_want));
 xticklabels(labels_I_want);
 xlim(log10(xlims))
+ylim([0 0.3])
 title("T Event MoS2 Dwell Time, FWHM: " + fwhm + ", mean: " + mean_val)
 
