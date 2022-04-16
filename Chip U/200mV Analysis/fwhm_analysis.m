@@ -3,12 +3,12 @@ clear all
 n = 11;  % the number of bins
 disp_mean = 1;
 mean_val = "";
-xlims = [0.005, 0.5];
-ylims = [0, 0.3];
+xlims = [0.001, 0.5];
+ylims = [0, 0.2];
 
 files = dir;
-T_data = cell(0, 10);
-W_data = cell(0, 10);
+T_data = cell(0, 16);
+W_data = cell(0, 16);
 
 for x = 1:length(files)
     name = files(x).name;
@@ -29,22 +29,28 @@ for x = 1:length(files)
                 pos6 = trace(start_event:end_event);
                 pos7 = []; %linspace(structure{i, 5}/1000^2, structure{i, 9}/1000^2, length(pos8));
                 pos8 = (pos3(1) - pos1(1))/1000;  % 3-1 dwell time
-                pos9 = (pos4(1) - pos1(1))/1000;  % 4-1 dwell time
+                pos9 = (pos4(1) - pos2(1))/1000;  % 4-2 dwell time
                 pos10 = (pos5(1) - pos3(1))/1000;  % 5-3 dwell time
+                pos11 = (pos5(1) - pos4(1))/1000;  % 5-4 dwell time
+                pos12 = (pos3(1) - pos2(1))/1000;  % 3-2 dwell time
+                pos13 = (pos2(1) - pos1(1))/1000;  % 2-1 dwell time
+                pos14 = (pos5(1) - pos1(1))/1000;  % 5-1 dwell time
+                pos15 = (pos4(1) - pos1(1))/1000;  % 4-1 dwell time
+                pos16 = (pos4(1) - pos3(1))/1000;  % 4-3 dwell time
                 if structure{i, 4} == 'T'
-                    T_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10};
+                    T_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10, pos11, pos12, pos13, pos14, pos15, pos16};
                 elseif structure{i, 4} == 'W'
-                    W_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10};
+                    W_data(end+1, :) = {pos1, pos2, pos3, pos4, pos5, pos6, pos7, pos8, pos9, pos10, pos11, pos12, pos13, pos14, pos15, pos16};
                 end
             end
         end
     end
 end
 
-W_SiNx = cell2mat(W_data(:, 8));
-T_SiNx = cell2mat(T_data(:, 8));
-W_MoS2 = cell2mat(W_data(:, 10));
-T_MoS2 = cell2mat(T_data(:, 10));
+W_SiNx = cell2mat(W_data(:, 13));
+T_SiNx = cell2mat(T_data(:, 12));
+W_MoS2 = cell2mat(W_data(:, 11));
+T_MoS2 = cell2mat(T_data(:, 12));
 
 figure(2)
 
