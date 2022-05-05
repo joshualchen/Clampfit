@@ -24,11 +24,13 @@
 
 % INDICATE BELOW WHICH SPREADSHEETS TO USE
 trace_file = uigetfile('*.csv');
-structure_file = extractBefore(trace_file, '_current.csv') + "_events.csv"; % MAY NEED TO CHANGE THE ENDING HERE TO GET RIGHT EVENTS SPREADSHEET
+structure_file = extractBefore(trace_file, '_current.csv') + "_events_complete.csv"; % MAY NEED TO CHANGE THE ENDING HERE TO GET RIGHT EVENTS SPREADSHEET
 % trace is the full current trace (one column)
 trace = readmatrix(trace_file);
+plot(trace)
 % structure is the event indices spreadsheet from Clampfit
 structure = readcell(structure_file);
+
 
 % if excel is 3 cols, add in 4th, 5th, and 6th
 if width(structure) == 3 % If it hasn't been processed before
@@ -62,7 +64,7 @@ end
 event_data_lims = [1, height(structure)];
 x = 1;
 global increase;
-increase = 200;
+increase = 0;
 step_length = round(range(event_data_lims)/10); % for jumping event values
 % make the last mark the current placement, unless empty
 if not(isempty(structure{x, 5}))
@@ -247,8 +249,10 @@ function redraw(num, structure, trace, t)
     % need to extract: background, event, letter, category
     global increase;
     letter = structure{num, 1};
+    
     start_ind = round(structure{num, 2} * 1000 / 0.96);
     end_ind = round(structure{num, 3} * 1000 / 0.96);
+    
     background = trace(start_ind:end_ind+increase);  % ADDED increase HERE
     trigger_time = 0.1;
     trigger = round(trigger_time * 1000 / 0.96); % units in points
@@ -262,9 +266,9 @@ function redraw(num, structure, trace, t)
     % Plot the event, background, and have a place to show letter and
     % category (title?)
     hold off;
-    plot(x_vals, background, 'Color', [0.9290 0.6940 0.1250]);
+    plot(x_vals, background, 'Color', [0.9290 0.6940 0.1250], 'LineWidth', 1.5);
     hold on;
-    plot(x_vals(1+trigger:end-trigger-increase), background(1+trigger:end-trigger-increase), 'Color', 'k');  % ADDED 30 HERE
+    plot(x_vals(1+trigger:end-trigger-increase), background(1+trigger:end-trigger-increase), 'Color', 'k', 'LineWidth', 1.5);  % ADDED 30 HERE
     
     % plot red line as well as existing lines
     for ind = 1:length(structure{num, 5})
