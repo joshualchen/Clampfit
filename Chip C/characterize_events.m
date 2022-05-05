@@ -248,9 +248,9 @@ function redraw(num, structure, trace, t)
     % Plot the event, background, and have a place to show letter and
     % category (title?)
     hold off;
-    plot(x_vals, background, 'Color', [0.9290 0.6940 0.1250]);
+    plot(x_vals, background, 'Color', [0.9290 0.6940 0.1250], 'LineWidth', 1.5);
     hold on;
-    plot(x_vals(1+trigger:end-trigger), background(1+trigger:end-trigger), 'Color', 'k');
+    plot(x_vals(1+trigger:end-trigger), background(1+trigger:end-trigger), 'Color', 'k', 'LineWidth', 1.5);
     
     % plot red line as well as existing lines
     for ind = 1:length(structure{num, 5})
