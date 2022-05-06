@@ -24,7 +24,7 @@
 
 % INDICATE BELOW WHICH SPREADSHEETS TO USE
 trace_file = uigetfile('*.csv');
-structure_file = extractBefore(trace_file, '_current.csv') + "_events_complete.csv"; % MAY NEED TO CHANGE THE ENDING HERE TO GET RIGHT EVENTS SPREADSHEET
+structure_file = extractBefore(trace_file, '_current.csv') + "_events_complete_T.csv"; % MAY NEED TO CHANGE THE ENDING HERE TO GET RIGHT EVENTS SPREADSHEET
 % trace is the full current trace (one column)
 trace = readmatrix(trace_file);
 plot(trace)

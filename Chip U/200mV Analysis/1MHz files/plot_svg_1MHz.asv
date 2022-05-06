@@ -1,0 +1,25 @@
+% INDICATE BELOW WHICH SPREADSHEETS TO USE
+trace_file = uigetfile('*.csv');
+% trace is the full current trace (one column)
+trace = readmatrix(trace_file);
+
+start_ind = "";
+end_ind = "";
+old_trace_length = "";
+
+new_start_ind = length(
+
+new_end_ind = 
+
+
+event = trace(
+background = trace(start_ind:end_ind) - baseline;
+running_trace = [running_trace; background];
+
+
+x_vals = linspace(0, length(running_trace) * 0.96, length(running_trace));
+
+plot(x_vals, running_trace, 'LineWidth', 1.5)
+title('200mV dsDNA W Events')
+xlabel('Time (us)')
+ylabel('Current Depth (nA)')
