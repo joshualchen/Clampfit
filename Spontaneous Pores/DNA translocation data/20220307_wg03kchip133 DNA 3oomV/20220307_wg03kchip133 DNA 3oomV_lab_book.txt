@@ -1,0 +1,7 @@
+_Session lab book file: C:/Users/Owner/EDR/Labbook/labs_07-03-2022_11-18-44.txt
+_Started recording: Mon Mar 7 12:27:15 2022
+_Lab book notes:
+_Range: 200 nA
+_Sampling frequency (SR): 20 kHz
+_Final Bandwidth: SR/2 (no filter)
+_Oversampling x4: disabled
